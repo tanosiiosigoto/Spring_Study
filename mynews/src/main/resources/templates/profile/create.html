@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html th:lang="ja" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/profile/create.css}">
+</head>
+
+<body>
+	<main layout:fragment="contents">
+		<div class="wrapper">
+			<h1>プロフィール記入</h1>
+
+			<form th:action="@{/profile/create}" method="post" th:object="${form}">
+				<ul class="form-ul">
+
+					<li>
+						<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+							class="error_msg"></p>
+						<div class="form-body">
+							<label class="title">名前</label>
+							<input type="text" th:field="*{name}" class="input-area">
+						</div>
+					</li>
+
+					<li>
+						<p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"
+							class="error_msg"></p>
+						<div class="form-body">
+							<label class="title">性別</label>
+							<select th:field="*{gender}" class="input-area">
+								<option value="">選択してください</option>
+								<option value="男性">男性</option>
+								<option value="女性">女性</option>
+							</select>
+						</div>
+					</li>
+
+					<li>
+						<p th:if="${#fields.hasErrors('hobby')}" th:errors="*{hobby}"
+							class="error_msg"></p>
+						<div class="form-body">
+							<label class="title">趣味</label>
+							<input type="text" th:field="*{hobby}" class="input-area">
+						</div>
+					</li>
+
+					<li>
+						<p th:if="${#fields.hasErrors('introduction')}" th:errors="*{introduction}"
+							class="error_msg"></p>
+						<div class="form-body">
+							<label class="title">自己紹介</label>
+							<textarea th:field="*{introduction}" rows="5"
+								class="input-area textarea"></textarea>
+						</div>
+					</li>
+
+					<li class="btn-area">
+						<button class="btn">送信</button>
+					</li>
+
+				</ul>
+			</form>
+		</div>
+	</main>
+</body>
+</html>

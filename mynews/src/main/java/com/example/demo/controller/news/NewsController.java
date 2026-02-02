@@ -1,13 +1,61 @@
 package com.example.demo.controller.news;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.domain.entity.news.News;
+import com.example.demo.domain.form.news.NewsCreateForm;
+import com.example.demo.domain.service.news.NewsCreateService;
+import com.example.demo.domain.service.news.NewsListService;
 
 @Controller
 public class NewsController {
 
     @GetMapping("/news/create")
-    public String create() {
+    public String create(@ModelAttribute("form") NewsCreateForm newsCreateForm) {
         return "news/create";
+    }
+    
+    @Autowired
+    private NewsCreateService newsCreateService;
+    
+    @PostMapping("/news/create")
+    public String create(@Validated @ModelAttribute("form") NewsCreateForm newsCreateForm,
+            BindingResult result, Model model) {
+
+        if (result.hasErrors()) {
+            return "news/create";
+        }
+
+        newsCreateService.create(newsCreateForm);
+
+        return "redirect:/news/create/complete";
+    }
+    
+    @GetMapping("/news/create/complete")
+    public String complete() {
+        return "news/complete";
+    }
+    
+    @Autowired
+    private NewsListService newsListService;
+    
+    @GetMapping("/news/list")
+    public String list(@RequestParam(name = "title", required = false) String title, Model model) {
+
+        List<News> newsList = newsListService.list(title);
+        model.addAttribute("newsList", newsList);
+        model.addAttribute("title", title);
+
+        return "news/list";
     }
 }
