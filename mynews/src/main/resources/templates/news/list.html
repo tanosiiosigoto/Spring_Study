@@ -13,7 +13,8 @@
 			<div class="top-area">
 				<button class="btn" th:onclick="location.href='/news/create'">新規作成</button>
 				<form th:action="@{/news/list}" method="get" class="search">
-					タイトル <input type="text" name="title" th:value="${title}" class="input-search">
+					タイトル <input type="text" name="title" th:value="${title}"
+						class="input-search">
 					<button class="search-btn">検索</button>
 				</form>
 			</div>
@@ -24,7 +25,7 @@
 					<th>本文</th>
 					<th>操作</th>
 				<tr th:each="news, status : ${newsList}">
-					<td>[[${status.count}]]</td>
+					<td th:text="${status.count}"></td>
 					<td>
 						<p class="td-title"
 							th:text="${#strings.length(news.title) <= 7} ? ${news.title} : |${#strings.substring(news.title, 0, 7)}...|"></p>
@@ -33,7 +34,12 @@
 						<p class="td-contents"
 							th:text="${#strings.length(news.content) <= 40} ? ${news.content} : |${#strings.substring(news.content, 0, 40)}...|"></p>
 					</td>
-					<td class="operation-box"></td>
+					<td class="operation-box"><a
+						th:href="@{/news/edit/__${news.id}__}" class="operation">編集</a> <!-- ここから -->
+						<form method="post" name="delete" th:action="@{/news/delete}">
+							<input type="hidden" name="id" th:value="${news.id}"> <a
+								onclick="this.parentNode.submit()" class="operation">削除</a>
+						</form> <!-- ここまで --></td>
 				</tr>
 			</table>
 		</div>

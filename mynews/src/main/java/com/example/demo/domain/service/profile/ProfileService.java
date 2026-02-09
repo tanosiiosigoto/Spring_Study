@@ -1,5 +1,6 @@
 package com.example.demo.domain.service.profile;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,10 @@ public class ProfileService {
         entity.setIntroduction(form.getIntroduction());
 
         return entity;
+    }
+
+    public @Nullable Object list(Object object) {
+        // TODO 自動生成されたメソッド・スタブ
+        return null;
     }
 }
