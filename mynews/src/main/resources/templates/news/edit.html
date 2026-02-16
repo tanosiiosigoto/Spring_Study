@@ -10,18 +10,17 @@
 	<main layout:fragment="contents">
 		<div class="wrapper">
 			<h1>ニュース編集</h1>
-			<form th:action="@{/news/edit/{id}(id=${news.id})}"
+			<form th:action="@{/news/edit/__${news.id}__}"
 				enctype="multipart/form-data" method="post">
 
 				<ul class="form-ul">
 					<li>
-						<p th:if="${#fields.hasErrors('form.title')}"
-							th:errors="*{form.title}" th:errorclass="error_msg"></p>
-						<div class="form-body">
-							<label for="title" class="title">タイトル</label> <input type="text"
-								class="input-area" th:value="${news.title}" name="title" />
-						</div>
-					</li>
+                        <p th:if="${#fields.hasErrors('form.title')}" th:errors="*{form.title}" th:errorclass="error_msg"></p>
+                        <div class="form-body">
+                            <label for="title" class="title">タイトル</label>
+                            <input type="text" class="input-area" th:value="${news.title}" name="title" />
+                        </div>
+                    </li>
 					<li>
 						<p th:if="${#fields.hasErrors('form.content')}"
 							th:errors="*{form.content}" th:errorclass="error_msg"></p>

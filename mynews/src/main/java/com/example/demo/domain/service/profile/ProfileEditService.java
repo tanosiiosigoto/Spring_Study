@@ -36,7 +36,7 @@ public class ProfileEditService {
     
     @Autowired
     private ProfileHistoriesRepository profileHistoriesRepository;
-    private void registerHistory(int id) {
+    private void registerHistory(Integer id) {
         ProfileHistories entity = new ProfileHistories();
         entity.setProfileId(id);
         profileHistoriesRepository.save(entity);

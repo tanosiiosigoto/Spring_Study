@@ -4,12 +4,13 @@
       layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/profile/complete.css}" />
 </head>
 <body>
     <main layout:fragment="contents">
         <div class="wrapper">
             <h1>プロフィール登録完了</h1>
-            <a href="/profile/list">一覧へ戻る</a>
+            <a class="return_btn" href="/profile/list">一覧へ戻る</a>
         </div>
     </main>
 </body>
