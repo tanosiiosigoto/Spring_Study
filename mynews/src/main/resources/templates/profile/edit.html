@@ -16,8 +16,8 @@
 				<ul class="form-ul">
 
 					<li>
-						<p th:if="${#fields.hasErrors('name')}"
-							th:errors="*{name}" th:errorclass="error_msg"></p>
+						<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+							th:errorclass="error_msg"></p>
 						<div class="form-body">
 							<label class="title">名前</label> <input type="text"
 								class="input-area" th:value="${profile.name}" name="name" />
@@ -25,11 +25,11 @@
 					</li>
 
 					<li>
-						<p th:if="${#fields.hasErrors('gender')}"
-							th:errors="*{gender}" th:errorclass="error_msg"></p>
+						<p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"
+							th:errorclass="error_msg"></p>
 						<div class="form-body">
-							<label class="title">性別</label> 
-							<select th:field="*{gender}" class="input-area">
+							<label class="title">性別</label> <select th:field="*{gender}"
+								class="input-area">
 								<option value="男性">男性</option>
 								<option value="女性">女性</option>
 								<option value="どちらでもない">どちらでもない</option>
@@ -38,8 +38,8 @@
 					</li>
 
 					<li>
-						<p th:if="${#fields.hasErrors('hobby')}"
-							th:errors="*{hobby}" th:errorclass="error_msg"></p>
+						<p th:if="${#fields.hasErrors('hobby')}" th:errors="*{hobby}"
+							th:errorclass="error_msg"></p>
 						<div class="form-body">
 							<label class="title">趣味</label> <input type="text"
 								class="input-area" th:value="${profile.hobby}" name="hobby" />
@@ -69,8 +69,8 @@
 			<p class="history_text">編集履歴</p>
 			<ul class="history">
 				<li th:each="history : ${profile.histories}" class="date"
-					th:text="${#dates.format(history.editedDate, 'yyyy-MM-dd HH:mm:ss')}">
-				</li>
+					th:text="${#dates.format(history.editedDate, 'yyyy-MM-dd HH:mm:ss')}"
+					th:if="${history.edtedDate==null}"></li>
 			</ul>
 		</div>
 	</main>

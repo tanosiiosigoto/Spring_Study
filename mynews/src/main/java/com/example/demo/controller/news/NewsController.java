@@ -45,8 +45,16 @@ public class NewsController {
         return "redirect:/news/create/complete";
     }
 
-    @GetMapping("/news/create/complete")
-    public String complete() {
+    @GetMapping("/news/{action}/complete")
+    public String complete(@PathVariable(name = "action") String action, Model model) {
+        model.addAttribute("move",action);
+        
+        if(action.equals("create")) {
+            model.addAttribute("completeMessage","作成完了しました。");
+        }else if(action.equals("edit")) {
+            model.addAttribute("completeMessage","編集完了しました。");
+        }
+        
         return "news/complete";
     }
 
