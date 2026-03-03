@@ -11,7 +11,7 @@
 		<div class="wrapper">
 			<h1>プロフィール編集</h1>
 
-			<form th:action="@{/profile/create}" method="post"
+			<form th:action="@{/profile/edit/__${profile.id}__}" method="post"
 				th:object="${profile}">
 				<ul class="form-ul">
 
@@ -69,8 +69,8 @@
 			<p class="history_text">編集履歴</p>
 			<ul class="history">
 				<li th:each="history : ${profile.histories}" class="date"
-					th:text="${#dates.format(history.editedDate, 'yyyy-MM-dd HH:mm:ss')}"
-					th:if="${history.editedDate==null}"></li>
+					th:text="${#dates.format(history.editedDate,'yyyy-MM-dd HH:mm:ss')}"
+					th:if="${history.editedDate!=null}"></li>
 			</ul>
 		</div>
 	</main>
