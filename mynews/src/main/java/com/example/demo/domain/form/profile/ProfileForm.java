@@ -3,21 +3,25 @@ package com.example.demo.domain.form.profile;
 import org.springframework.web.multipart.MultipartFile;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class ProfileForm {
 
-    @NotEmpty(message = "＊名前を入力してください。")
+    @NotEmpty(message = "＊名前は必須です")
+    @Size(max = 20, message = "＊名前は20文字以内")
     private String name;
 
     @NotEmpty(message = "＊性別を入力してください。")
     private String gender;
     
     @NotEmpty(message = "＊趣味を入力してください。")
+    @Size(max = 140, message = "＊趣味は140文字以内")
     private String hobby;
     
     @NotEmpty(message = "＊自己紹介を入力してください。")
+    @Size(max = 140, message = "＊自己紹介は140文字以内")
     private String introduction;
 
     private MultipartFile image;

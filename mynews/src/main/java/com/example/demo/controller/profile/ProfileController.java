@@ -77,8 +77,14 @@ public class ProfileController {
     public String edit(@ModelAttribute("form") ProfileEditForm form,
                        @PathVariable int id,
                        Model model) {
-
-        model.addAttribute("profile", profileEditService.findProfile(id));
+        Profile profile = profileEditService.findProfile(id);
+        
+        form.setName(profile.getName());
+        form.setGender(profile.getGender());
+        form.setHobby(profile.getHobby());
+        form.setIntroduction(profile.getIntroduction());
+        
+        model.addAttribute("profile", profile);
         return "profile/edit";
     }
 
@@ -89,7 +95,8 @@ public class ProfileController {
                        Model model) {
 
         if (result.hasErrors()) {
-            return edit(form, id, model);
+            model.addAttribute("profile", profileEditService.findProfile(id));
+            return "profile/edit";
         }
 
         profileEditService.edit(id, form);

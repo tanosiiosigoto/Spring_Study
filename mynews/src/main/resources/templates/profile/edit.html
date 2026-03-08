@@ -11,24 +11,23 @@
 		<div class="wrapper">
 			<h1>プロフィール編集</h1>
 
-			<form th:action="@{/profile/edit/__${profile.id}__}" method="post"
-				th:object="${profile}">
+			<form th:action="@{/profile/edit/__${profile.id}__}" method="post">
 				<ul class="form-ul">
 
 					<li>
-						<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
-							th:errorclass="error_msg"></p>
+						<p th:if="${#fields.hasErrors('form.name')}"
+							th:errors="*{form.name}" th:errorclass="error_msg"></p>
 						<div class="form-body">
 							<label class="title">名前</label> <input type="text"
-								class="input-area" th:value="${profile.name}" name="name" />
+								class="input-area" th:field="*{form.name}" />
 						</div>
 					</li>
 
 					<li>
-						<p th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"
-							th:errorclass="error_msg"></p>
+						<p th:if="${#fields.hasErrors('form.gender')}"
+							th:errors="*{form.gender}" th:errorclass="error_msg"></p>
 						<div class="form-body">
-							<label class="title">性別</label> <select th:field="*{gender}"
+							<label class="title">性別</label> <select th:field="*{form.gender}"
 								class="input-area">
 								<option value="男性">男性</option>
 								<option value="女性">女性</option>
@@ -38,21 +37,21 @@
 					</li>
 
 					<li>
-						<p th:if="${#fields.hasErrors('hobby')}" th:errors="*{hobby}"
-							th:errorclass="error_msg"></p>
+						<p th:if="${#fields.hasErrors('form.hobby')}"
+							th:errors="*{form.hobby}" th:errorclass="error_msg"></p>
 						<div class="form-body">
 							<label class="title">趣味</label> <input type="text"
-								class="input-area" th:value="${profile.hobby}" name="hobby" />
+								class="input-area" th:field="*{form.hobby}" />
 						</div>
 					</li>
 
 					<li>
-						<p th:if="${#fields.hasErrors('introduction')}"
-							th:errors="*{introduction}" th:errorclass="error_msg"></p>
+						<p th:if="${#fields.hasErrors('form.introduction')}"
+							th:errors="*{form.introduction}" th:errorclass="error_msg"></p>
 						<div class="form-body">
 							<label class="title">自己紹介</label>
 							<textarea class="input-area textarea"
-								th:text="${profile.introduction}" name="introduction"></textarea>
+								th:field="*{form.introduction}"></textarea>
 						</div>
 					</li>
 
